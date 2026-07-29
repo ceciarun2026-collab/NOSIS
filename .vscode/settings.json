@@ -1,0 +1,14 @@
+{
+  "appService.zipIgnorePattern": [
+    ".venv/**",
+    "__pycache__/**",
+    "*.pyc",
+    ".env",
+    "logs/**",
+    "database/*.db",
+    "storage/json/tmp*.json",
+    ".git/**",
+    ".gitignore"
+],
+"appService.defaultWebAppToDeploy": "None"
+}

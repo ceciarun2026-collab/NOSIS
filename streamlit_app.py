@@ -2561,20 +2561,29 @@ def pagina_matriz():
         _cid_emp = emp.get("company_id")
         detalle_href = f"?ver_empresa={_cid_emp}" if _cid_emp is not None else "?ver_empresa=actual"
         detalle_html = f'<a class="mx-detalle-link" href="{detalle_href}" target="_self">Ver detalle →</a>'
+    cuit_span = ""
 
-        filas_html += (
-            "<tr>"
-            f'<td class="mx-empresa mx-nombre-empresa">{html.escape(emp["razon_social"])}'
-            f'{f"<br/><span style=\'font-weight:400;color:#9AA1BD;font-size:11.5px;\'>{cuit_html}</span>" if cuit_html else ""}'
-            f"</td>"
-            f'<td class="mx-score-grande">{score_texto}</td>'
-            f'<td class="mx-fecha">{emp["fecha"]}</td>'
-            f"{celdas_criterios}"
-            f'<td class="mx-estado-final"><span class="status-chip {nivel_info["chip"]}">{nivel_info["label"]}</span></td>'
-            f'<td class="mx-motivo">{html.escape(fila["porque"])}</td>'
-            f'<td>{detalle_html}</td>'
-            "</tr>"
-        )
+    if cuit_html:
+     cuit_span = (
+        "<br/><span "
+        "style='font-weight:400;color:#9AA1BD;font-size:11.5px;'>"
+        f"{html.escape(cuit_html)}"
+        "</span>"
+    )
+
+    filas_html += (
+    "<tr>"
+    f'<td class="mx-empresa mx-nombre-empresa">{html.escape(emp["razon_social"])}'
+    f"{cuit_span}"
+    f"</td>"
+    f'<td class="mx-score-grande">{score_texto}</td>'
+    f'<td class="mx-fecha">{emp["fecha"]}</td>'
+    f"{celdas_criterios}"
+    f'<td class="mx-estado-final"><span class="status-chip {nivel_info["chip"]}">{nivel_info["label"]}</span></td>'
+    f'<td class="mx-motivo">{html.escape(fila["porque"])}</td>'
+    f"<td>{detalle_html}</td>"
+    "</tr>"
+)
 
     st.markdown(
         f"""
